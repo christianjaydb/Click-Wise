@@ -10,7 +10,7 @@
     margin: 0;
     padding: 0;
     min-height: 100%;
-    background: #14161a;
+    background: linear-gradient(160deg, #232733 0%, #1c1f27 55%, #14161d 100%);
   }
   #root {
     min-height: 100vh;
@@ -32,18 +32,18 @@ Error generating stack: `+n.message+`
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
 
     .pg-root {
-      --bg: #0f1115;
-      --bg-2: #14171d;
-      --surface: #191d24;
-      --surface-2: #1f232b;
-      --border: #2a2f38;
-      --border-soft: #22262e;
+      --bg: #1c1f27;
+      --bg-2: #232733;
+      --surface: #2a2f3c;
+      --surface-2: #333947;
+      --border: #454c5c;
+      --border-soft: #3a4150;
       --text: #f0f2f5;
       --text-dim: #9aa1ac;
       --text-faint: #6b7280;
-      --accent: #52c4b0;
-      --accent-2: #6ad6c4;
-      --accent-soft: #16302c;
+      --accent: #4f8ff7;
+      --accent-2: #6ba8ff;
+      --accent-soft: #152233;
       --danger: #e17a7a;
       --danger-2: #ef8f8f;
       --danger-soft: #33201f;
@@ -55,9 +55,10 @@ Error generating stack: `+n.message+`
       font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
       color: var(--text);
       background:
-        radial-gradient(1100px 520px at 12% -8%, rgba(82,196,176,0.09), transparent 60%),
-        radial-gradient(900px 480px at 100% 0%, rgba(82,196,176,0.05), transparent 55%),
-        var(--bg);
+        radial-gradient(1100px 520px at 12% -8%, rgba(79,143,247,0.16), transparent 60%),
+        radial-gradient(900px 480px at 100% 0%, rgba(79,143,247,0.09), transparent 55%),
+        radial-gradient(1000px 600px at 50% 100%, rgba(79,143,247,0.05), transparent 60%),
+        linear-gradient(160deg, var(--bg-2) 0%, var(--bg) 55%, #14161d 100%);
       min-height: 100vh;
       width: 100%;
       line-height: 1.5;
@@ -126,19 +127,19 @@ Error generating stack: `+n.message+`
       transition: border-color 0.18s ease, background 0.18s ease, transform 0.15s ease, box-shadow 0.18s ease;
       box-shadow: var(--shadow-sm);
     }
-    .pg-diff-btn:hover { border-color: #3a4048; transform: translateY(-1px); }
+    .pg-diff-btn:hover { border-color: #5a6272; transform: translateY(-1px); }
     .pg-diff-btn:active { transform: translateY(0); }
     .pg-diff-btn.active { border-color: var(--accent); background: var(--accent-soft); box-shadow: var(--shadow-glow); }
     .pg-diff-left { display: flex; align-items: center; gap: 12px; }
     .pg-diff-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; box-shadow: 0 0 8px currentColor; }
     .pg-diff-name { font-weight: 600; }
     .pg-diff-sub { color: var(--text-faint); font-size: 12.5px; }
-    .pg-diff-btn.active .pg-diff-sub { color: #8fd0c4; }
+    .pg-diff-btn.active .pg-diff-sub { color: #8fb8f0; }
     .pg-diff-check { color: var(--accent); font-size: 14px; visibility: hidden; transform: scale(0.6); transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1); }
     .pg-diff-btn.active .pg-diff-check { visibility: visible; transform: scale(1); }
 
     .pg-start-btn {
-      background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #08130f; border: none;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #050b14; border: none;
       padding: 14px 20px; border-radius: var(--radius);
       font-size: 14px; font-weight: 700; cursor: pointer; width: 100%; letter-spacing: 0.01em;
       transition: transform 0.15s ease, box-shadow 0.18s ease, filter 0.15s ease;
@@ -222,7 +223,7 @@ Error generating stack: `+n.message+`
       cursor: pointer; border: 1px solid var(--border); background: var(--surface-2); color: var(--text);
       transition: border-color 0.15s ease, background 0.15s ease, transform 0.12s ease, box-shadow 0.15s ease;
     }
-    .pg-answer-btn:hover:not(:disabled) { border-color: #4a5058; transform: translateY(-1px); }
+    .pg-answer-btn:hover:not(:disabled) { border-color: #636b7c; transform: translateY(-1px); }
     .pg-answer-btn:active:not(:disabled) { transform: translateY(0); }
     .pg-answer-btn:disabled { cursor: default; }
     .pg-answer-icon { font-size: 13px; line-height: 1; opacity: 0.85; }
@@ -297,44 +298,58 @@ Error generating stack: `+n.message+`
       animation: pg-pop 0.35s cubic-bezier(0.16,1,0.3,1);
     }
     .pg-results-status {
-      font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
-      color: var(--danger); margin-bottom: 14px;
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 10.5px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;
+      color: var(--danger); margin-bottom: 16px;
+      padding: 5px 10px; border-radius: 999px;
+      background: var(--danger-soft); border: 1px solid rgba(225,122,122,0.25);
     }
-    .pg-results-status.is-early { color: var(--text-faint); }
+    .pg-results-status::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
+    .pg-results-status.is-early { color: var(--text-faint); background: var(--surface-2); border-color: var(--border-soft); }
 
-    .pg-results-top { display: flex; align-items: center; gap: 18px; margin-bottom: 26px; }
+    .pg-results-top {
+      display: flex; align-items: center; gap: 20px; margin-bottom: 26px;
+      padding: 16px 18px; border-radius: 14px;
+      background: linear-gradient(135deg, var(--accent-soft), transparent 70%);
+      border: 1px solid var(--border-soft);
+    }
     .pg-ring {
-      width: 78px; height: 78px; border-radius: 50%; padding: 6px; flex-shrink: 0;
+      width: 92px; height: 92px; border-radius: 50%; padding: 7px; flex-shrink: 0;
       display: flex; align-items: center; justify-content: center;
       animation: pg-ring-in 0.6s cubic-bezier(0.16,1,0.3,1);
       transition: background 0.05s linear;
+      filter: drop-shadow(0 0 14px rgba(79,143,247,0.35));
     }
     .pg-ring-inner {
       width: 100%; height: 100%; border-radius: 50%; background: var(--surface);
       display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 0 0 1px var(--border-soft) inset;
+      box-shadow: 0 0 0 1px var(--border-soft) inset, 0 2px 8px rgba(0,0,0,0.25) inset;
     }
-    .pg-ring-pct { font-size: 19px; font-weight: 800; line-height: 1; }
-    .pg-ring-sign { font-size: 11px; color: var(--text-faint); font-weight: 600; line-height: 1; margin-left: 1px; align-self: center; transform: translateY(1px); }
-    .pg-results-headings { display: flex; flex-direction: column; gap: 3px; }
-    .pg-rating-sub { font-size: 12.5px; color: var(--text-faint); }
+    .pg-ring-pct { font-size: 23px; font-weight: 800; line-height: 1; letter-spacing: -0.02em; }
+    .pg-ring-sign { font-size: 12px; color: var(--text-faint); font-weight: 700; line-height: 1; margin-left: 1px; align-self: center; transform: translateY(1px); }
+    .pg-results-headings { display: flex; flex-direction: column; gap: 4px; }
+    .pg-rating-sub {
+      font-size: 11px; color: var(--text-faint); text-transform: uppercase;
+      letter-spacing: 0.08em; font-weight: 700;
+    }
     .pg-rating-label {
-      font-size: 21px; font-weight: 800; letter-spacing: -0.01em; margin: 0;
+      font-size: 24px; font-weight: 800; letter-spacing: -0.01em; margin: 0;
       font-family: 'Sora', 'Plus Jakarta Sans', system-ui, sans-serif;
+      color: var(--text);
     }
 
-    .pg-stat-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; margin-bottom: 28px; }
+    .pg-stat-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin-bottom: 28px; }
     .pg-stat {
-      background: var(--surface-2); border: 1px solid var(--border-soft); border-radius: 10px; padding: 15px 6px; text-align: center;
-      transition: border-color 0.15s ease;
+      background: var(--surface-2); border: 1px solid var(--border-soft); border-radius: 12px; padding: 16px 6px; text-align: center;
+      transition: border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
     }
-    .pg-stat:hover { border-color: var(--border); }
+    .pg-stat:hover { border-color: var(--border); transform: translateY(-2px); box-shadow: var(--shadow-sm); }
     .pg-stat-num { font-weight: 800; font-size: 20px; display: inline-block; animation: pg-count-pulse 0.5s cubic-bezier(0.16,1,0.3,1); }
     .pg-stat-label { font-size: 10px; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 4px; }
 
     .pg-results-actions { display: flex; gap: 10px; flex-wrap: wrap; }
     .pg-btn-primary {
-      flex: 1; min-width: 140px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #08130f; border: none;
+      flex: 1; min-width: 140px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #050b14; border: none;
       padding: 14px 20px; border-radius: var(--radius); font-weight: 700; font-size: 13.5px;
       cursor: pointer; transition: transform 0.15s ease, filter 0.15s ease;
       box-shadow: 0 6px 20px -6px rgba(82,196,176,0.4);
@@ -346,7 +361,7 @@ Error generating stack: `+n.message+`
       padding: 14px 20px; border-radius: var(--radius); font-weight: 700; font-size: 13.5px;
       cursor: pointer; transition: border-color 0.15s ease, transform 0.15s ease, background 0.15s ease;
     }
-    .pg-btn-secondary:hover { border-color: #4a5058; background: var(--surface-2); transform: translateY(-1px); }
+    .pg-btn-secondary:hover { border-color: #636b7c; background: var(--surface-2); transform: translateY(-1px); }
     .pg-btn-secondary:active { transform: translateY(0); }
 
     @media (prefers-reduced-motion: reduce) {
@@ -360,7 +375,7 @@ Error generating stack: `+n.message+`
     }
   
 `});function kh({onStart:e}){let[t,a]=(0,se.useState)("Mixed"),n={Mixed:ba.length,Easy:ba.filter(l=>l.difficulty==="Easy").length,Medium:ba.filter(l=>l.difficulty==="Medium").length,Hard:ba.filter(l=>l.difficulty==="Hard").length};return(0,b.jsxs)("div",{className:"pg-start",children:[(0,b.jsx)("h1",{className:"pg-title",children:"ClickWise"}),(0,b.jsx)("p",{className:"pg-tagline",children:"Can you spot the threat before it's too late? Review 10 real-world message scenarios and decide: safe, or phishing."}),(0,b.jsx)("div",{className:"pg-section-label",children:"Difficulty"}),(0,b.jsx)("div",{className:"pg-diff-list",children:[{key:"Mixed",name:"Mixed",sub:"A blend of all levels",dot:"var(--accent)"},{key:"Easy",name:"Easy",sub:"Clear warning signs",dot:"#8fd0a4"},{key:"Medium",name:"Medium",sub:"Requires closer inspection",dot:"#d6b872"},{key:"Hard",name:"Hard",sub:"Subtle, sophisticated tactics",dot:"var(--danger)"}].map(l=>(0,b.jsxs)("button",{className:`pg-diff-btn${t===l.key?" active":""}`,onClick:()=>a(l.key),children:[(0,b.jsxs)("span",{className:"pg-diff-left",children:[(0,b.jsx)("span",{className:"pg-diff-dot",style:{background:l.dot}}),(0,b.jsxs)("span",{children:[(0,b.jsx)("span",{className:"pg-diff-name",children:l.name}),(0,b.jsx)("span",{children:" \u2014 "}),(0,b.jsx)("span",{className:"pg-diff-sub",children:l.sub})]})]}),(0,b.jsx)("span",{className:"pg-diff-check",children:"\u2713"})]},l.key))}),(0,b.jsx)("button",{className:"pg-start-btn",onClick:()=>e(t),children:"Start Game \u2192"}),(0,b.jsxs)("div",{className:"pg-pool-note",children:["10 randomized scenarios, drawn from a pool of ",n[t]]})]})}function Yh({score:e,maxScore:t,lives:a,current:n,total:i}){return(0,b.jsxs)(b.Fragment,{children:[(0,b.jsxs)("div",{className:"pg-hud",children:[(0,b.jsxs)("div",{className:"pg-hud-group",children:[(0,b.jsxs)("div",{className:"pg-hud-item",children:["Score ",(0,b.jsxs)("strong",{className:"mono pg-score-pop",key:e,children:[e,"/",t]})]}),(0,b.jsxs)("div",{className:"pg-hud-item",children:["Lives",(0,b.jsx)("span",{className:"pg-lives-dots",children:[0,1,2].map(l=>(0,b.jsx)("span",{className:`pg-life-dot${l>=a?" lost":""}${l===a-1?" just-lost":""}`},l))})]})]}),(0,b.jsxs)("div",{className:"pg-hud-item mono",children:[n," / ",i]})]}),(0,b.jsx)("div",{className:"pg-progress-track",children:(0,b.jsx)("div",{className:"pg-progress-fill",style:{width:`${(n-1)/i*100}%`}})})]})}function Bh({scenario:e,selected:t,onAnswer:a}){let n=t!==null;return(0,b.jsxs)("div",{className:"pg-card",children:[(0,b.jsxs)("div",{className:"pg-card-top",children:[(0,b.jsx)("span",{className:"pg-tag",children:e.category}),(0,b.jsx)("span",{className:`pg-tag diff-${e.difficulty}`,children:e.difficulty})]}),(0,b.jsx)("div",{className:"pg-scenario-meta",children:"From"}),(0,b.jsx)("div",{className:"pg-scenario-sender mono",children:e.sender}),(0,b.jsx)("div",{className:"pg-scenario-subject",children:e.subject}),(0,b.jsx)("div",{className:"pg-scenario-content",children:e.content}),(0,b.jsx)("div",{className:"pg-answers",children:e.buttonOrder.map(i=>{let l="pg-answer-btn";return n&&(i===t&&i===e.answer?l+=" chosen-correct":i===t&&i!==e.answer?l+=" chosen-wrong":i===e.answer?l+=" reveal-correct":l+=" dim"),(0,b.jsx)("button",{className:l,disabled:n,onClick:()=>a(i),children:[(0,b.jsx)("span",{className:"pg-answer-icon",children:i==="safe"?"\u2713":"\u26a0"}),i==="safe"?"Safe":"Phishing / Suspicious"]},i)})}),n&&(0,b.jsxs)("div",{className:`pg-feedback ${t===e.answer?"correct":"wrong"}`,children:[(0,b.jsx)("div",{className:"pg-feedback-head",children:t===e.answer?"Correct \u2014 +10 points":"Incorrect"}),(0,b.jsxs)("div",{className:"pg-feedback-body",children:[(0,b.jsxs)("b",{children:["Verdict: ",e.answer==="phishing"?"Phishing / Suspicious":"Safe","."]})," ",e.explanation]})]})]})}function Qh({session:e,onFinish:t}){let[a,n]=(0,se.useState)(0),[i,l]=(0,se.useState)(0),[u,c]=(0,se.useState)(3),[o,r]=(0,se.useState)(null),[g,p]=(0,se.useState)(0),[m,y]=(0,se.useState)(0),[v,V]=(0,se.useState)(!1),S=e[a],x=e.length*10,R=(0,se.useCallback)(s=>{if(o!==null)return;r(s),s===S.answer?(l(h=>h+10),p(h=>h+1)):(y(h=>h+1),c(h=>Math.max(0,h-1)))},[o,S]),f=()=>{if(typeof window<"u"&&window.scrollTo({top:0,behavior:"smooth"}),u<=0){t({score:i,correctCount:g,incorrectCount:m,maxScore:x,total:e.length,gameOver:!0});return}if(a+1>=e.length){t({score:i,correctCount:g,incorrectCount:m,maxScore:x,total:e.length,gameOver:!1});return}n(s=>s+1),r(null)},E=()=>V(!0),K=()=>{V(!1),t({score:i,correctCount:g,incorrectCount:m,maxScore:x,total:e.length,gameOver:!1,endedEarly:!0})};return(0,se.useEffect)(()=>{if(o!==null&&u===0){let s=setTimeout(()=>{t({score:i,correctCount:g,incorrectCount:m,maxScore:x,total:e.length,gameOver:!0})},1200);return()=>clearTimeout(s)}},[u,o]),(0,b.jsxs)("div",{children:[(0,b.jsx)(Yh,{score:i,maxScore:x,lives:u,current:a+1,total:e.length}),(0,b.jsx)("div",{className:"pg-end-row",children:(0,b.jsxs)("button",{type:"button",className:"pg-end-btn",onClick:E,"aria-haspopup":"dialog",children:[(0,b.jsx)("span",{"aria-hidden":"true",className:"pg-end-btn-icon",children:"\u2715"}),"End game"]})}),(0,b.jsx)(Bh,{scenario:S,selected:o,onAnswer:R}),o!==null&&u>0&&(0,b.jsx)("button",{className:"pg-next-btn",onClick:f,children:a+1>=e.length?"See results":"Next scenario"}),o!==null&&u===0&&(0,b.jsx)("div",{className:"pg-gameover-note",children:"Game over \u2014 out of lives"}),v&&(0,b.jsx)("div",{className:"pg-modal-overlay",role:"presentation",onClick:s=>{s.target===s.currentTarget&&V(!1)},children:(0,b.jsxs)("div",{className:"pg-modal",role:"dialog","aria-modal":"true","aria-labelledby":"pg-modal-title",children:[(0,b.jsx)("div",{id:"pg-modal-title",className:"pg-modal-title",children:"End the game now?"}),(0,b.jsxs)("div",{className:"pg-modal-body",children:["You've answered ",a+(o!==null?1:0)," of ",e.length," scenarios. Your score so far will be saved and shown on the results screen."]}),(0,b.jsxs)("div",{className:"pg-modal-actions",children:[(0,b.jsx)("button",{className:"pg-btn-secondary",onClick:()=>V(!1),children:"Keep playing"}),(0,b.jsx)("button",{className:"pg-btn-danger",onClick:K,children:"End game"})]})]})})]})}
-function Gh({results:e,onPlayAgain:t,onChangeDifficulty:a}){let{score:n,correctCount:i,incorrectCount:l,maxScore:u,total:c,gameOver:o,endedEarly:d}=e,r=Math.round(n/u*100),g=Hh(r),[pgp,setPgp]=se.useState(0);se.useEffect(()=>{let start=null,dur=900,raf;function step(ts){if(start===null)start=ts;let p=Math.min(1,(ts-start)/dur);let ez=1-Math.pow(1-p,3);setPgp(ez);if(p<1)raf=requestAnimationFrame(step)}raf=requestAnimationFrame(step);return()=>raf&&cancelAnimationFrame(raf)},[]);let rr=Math.round(r*pgp),sn=Math.round(n*pgp),si=Math.round(i*pgp),sl=Math.round(l*pgp),sab=Math.round((i+l)*pgp);return(0,b.jsx)("div",{className:"pg-results",children:(0,b.jsxs)("div",{className:"pg-results-card",children:[(o||d)&&(0,b.jsx)("div",{className:`pg-results-status${d?" is-early":""}`,children:o?"Game over \u2014 out of lives":"Ended early"}),(0,b.jsxs)("div",{className:"pg-results-top",children:[(0,b.jsx)("div",{className:"pg-ring",style:{background:`conic-gradient(var(--accent) ${rr*3.6}deg, var(--surface-2) 0deg)`},children:(0,b.jsxs)("div",{className:"pg-ring-inner",children:[(0,b.jsx)("span",{className:"mono pg-ring-pct",children:rr}),(0,b.jsx)("span",{className:"pg-ring-sign",children:"%"})]})}),(0,b.jsxs)("div",{className:"pg-results-headings",children:[(0,b.jsx)("div",{className:"pg-rating-label",children:g.label}),(0,b.jsx)("div",{className:"pg-rating-sub",children:"accuracy on this run"})]})]}),(0,b.jsxs)("div",{className:"pg-stat-grid",children:[(0,b.jsxs)("div",{className:"pg-stat",children:[(0,b.jsx)("div",{className:"pg-stat-num mono",children:sn}),(0,b.jsx)("div",{className:"pg-stat-label",children:"Final Score"})]}),(0,b.jsxs)("div",{className:"pg-stat",children:[(0,b.jsx)("div",{className:"pg-stat-num mono",style:{color:"var(--accent)"},children:si}),(0,b.jsx)("div",{className:"pg-stat-label",children:"Correct"})]}),(0,b.jsxs)("div",{className:"pg-stat",children:[(0,b.jsx)("div",{className:"pg-stat-num mono",style:{color:"var(--danger)"},children:sl}),(0,b.jsx)("div",{className:"pg-stat-label",children:"Incorrect"})]}),(0,b.jsxs)("div",{className:"pg-stat",children:[(0,b.jsxs)("div",{className:"pg-stat-num mono",children:[sab,"/",c]}),(0,b.jsx)("div",{className:"pg-stat-label",children:"Answered"})]})]}),(0,b.jsxs)("div",{className:"pg-results-actions",children:[(0,b.jsx)("button",{className:"pg-btn-primary",onClick:t,children:"\u21bb Play again"}),(0,b.jsx)("button",{className:"pg-btn-secondary",onClick:a,children:"Change difficulty"})]})]})})}function qo(){let[e,t]=(0,se.useState)("start"),[a,n]=(0,se.useState)("Mixed"),[i,l]=(0,se.useState)([]),[u,c]=(0,se.useState)(null),o=(0,se.useRef)(0),W=()=>{typeof window<"u"&&window.scrollTo({top:0,behavior:"smooth"})},r=y=>{n(y),l(_m(y)),o.current+=1,t("game"),W()},g=y=>{c(y),t("results"),W()},p=()=>{l(_m(a)),o.current+=1,t("game"),W()},m=()=>{t("start"),W()};return(0,b.jsxs)("div",{className:"pg-root",children:[(0,b.jsx)(Rh,{}),(0,b.jsxs)("div",{className:"pg-wrap",children:[(0,b.jsxs)("div",{className:"pg-header",children:[(0,b.jsxs)("div",{className:"pg-brand",children:[(0,b.jsx)("span",{className:"pg-brand-icon",children:(0,b.jsxs)("svg",{width:"19",height:"19",viewBox:"0 0 24 24",fill:"none",xmlns:"http://www.w3.org/2000/svg",children:[(0,b.jsx)("path",{d:"M12 2.5L4.5 5.4V11.2C4.5 16.55 7.85 21.4 12 22.7C16.15 21.4 19.5 16.55 19.5 11.2V5.4L12 2.5Z",fill:"var(--accent-soft)",stroke:"var(--accent)",strokeWidth:"1.3",strokeLinejoin:"round"}),(0,b.jsx)("path",{d:"M8.7 11.9L10.85 14L15.4 9.3",stroke:"var(--accent)",strokeWidth:"1.4",strokeLinecap:"round",strokeLinejoin:"round"})]})}),"ClickWise"]}),(0,b.jsx)("div",{className:"pg-header-meta mono",children:e==="start"?"Spot the threat":`Difficulty: ${a}`})]}),e==="start"&&(0,b.jsx)(kh,{onStart:r}),e==="game"&&(0,b.jsx)(Qh,{session:i,onFinish:g},o.current),e==="results"&&u&&(0,b.jsx)(Gh,{results:u,onPlayAgain:p,onChangeDifficulty:m})]})]})}var jm=Sa(gi()),Lh=(0,Cm.createRoot)(document.getElementById("root"));Lh.render((0,jm.jsx)(qo,{}));})();
+function Gh({results:e,onPlayAgain:t,onChangeDifficulty:a}){let{score:n,correctCount:i,incorrectCount:l,maxScore:u,total:c,gameOver:o,endedEarly:d}=e,r=Math.round(n/u*100),g=Hh(r),[pgp,setPgp]=se.useState(0);se.useEffect(()=>{let start=null,dur=900,raf;function step(ts){if(start===null)start=ts;let p=Math.min(1,(ts-start)/dur);let ez=1-Math.pow(1-p,3);setPgp(ez);if(p<1)raf=requestAnimationFrame(step)}raf=requestAnimationFrame(step);return()=>raf&&cancelAnimationFrame(raf)},[]);let rr=Math.round(r*pgp),sn=Math.round(n*pgp),si=Math.round(i*pgp),sl=Math.round(l*pgp),sab=Math.round((i+l)*pgp);return(0,b.jsx)("div",{className:"pg-results",children:(0,b.jsxs)("div",{className:"pg-results-card",children:[(o||d)&&(0,b.jsx)("div",{className:`pg-results-status${d?" is-early":""}`,children:o?"Game over \u2014 out of lives":"Ended early"}),(0,b.jsxs)("div",{className:"pg-results-top",children:[(0,b.jsx)("div",{className:"pg-ring",style:{background:`conic-gradient(var(--accent) ${rr*3.6}deg, var(--surface-2) 0deg)`},children:(0,b.jsxs)("div",{className:"pg-ring-inner",children:[(0,b.jsx)("span",{className:"mono pg-ring-pct",children:rr}),(0,b.jsx)("span",{className:"pg-ring-sign",children:"%"})]})}),(0,b.jsxs)("div",{className:"pg-results-headings",children:[(0,b.jsx)("div",{className:"pg-rating-sub",children:"Accuracy on this run"})]})]}),(0,b.jsxs)("div",{className:"pg-stat-grid",children:[(0,b.jsxs)("div",{className:"pg-stat",children:[(0,b.jsx)("div",{className:"pg-stat-num mono",children:sn}),(0,b.jsx)("div",{className:"pg-stat-label",children:"Final Score"})]}),(0,b.jsxs)("div",{className:"pg-stat",children:[(0,b.jsx)("div",{className:"pg-stat-num mono",style:{color:"var(--accent)"},children:si}),(0,b.jsx)("div",{className:"pg-stat-label",children:"Correct"})]}),(0,b.jsxs)("div",{className:"pg-stat",children:[(0,b.jsx)("div",{className:"pg-stat-num mono",style:{color:"var(--danger)"},children:sl}),(0,b.jsx)("div",{className:"pg-stat-label",children:"Incorrect"})]}),(0,b.jsxs)("div",{className:"pg-stat",children:[(0,b.jsxs)("div",{className:"pg-stat-num mono",children:[sab,"/",c]}),(0,b.jsx)("div",{className:"pg-stat-label",children:"Answered"})]})]}),(0,b.jsxs)("div",{className:"pg-results-actions",children:[(0,b.jsx)("button",{className:"pg-btn-primary",onClick:t,children:"\u21bb Play again"}),(0,b.jsx)("button",{className:"pg-btn-secondary",onClick:a,children:"Change difficulty"})]})]})})}function qo(){let[e,t]=(0,se.useState)("start"),[a,n]=(0,se.useState)("Mixed"),[i,l]=(0,se.useState)([]),[u,c]=(0,se.useState)(null),o=(0,se.useRef)(0),W=()=>{typeof window<"u"&&window.scrollTo({top:0,behavior:"smooth"})},r=y=>{n(y),l(_m(y)),o.current+=1,t("game"),W()},g=y=>{c(y),t("results"),W()},p=()=>{l(_m(a)),o.current+=1,t("game"),W()},m=()=>{t("start"),W()};return(0,b.jsxs)("div",{className:"pg-root",children:[(0,b.jsx)(Rh,{}),(0,b.jsxs)("div",{className:"pg-wrap",children:[(0,b.jsxs)("div",{className:"pg-header",children:[(0,b.jsxs)("div",{className:"pg-brand",children:[(0,b.jsx)("span",{className:"pg-brand-icon",children:(0,b.jsxs)("svg",{width:"19",height:"19",viewBox:"0 0 24 24",fill:"none",xmlns:"http://www.w3.org/2000/svg",children:[(0,b.jsx)("path",{d:"M12 2.5L4.5 5.4V11.2C4.5 16.55 7.85 21.4 12 22.7C16.15 21.4 19.5 16.55 19.5 11.2V5.4L12 2.5Z",fill:"var(--accent-soft)",stroke:"var(--accent)",strokeWidth:"1.3",strokeLinejoin:"round"}),(0,b.jsx)("path",{d:"M8.7 11.9L10.85 14L15.4 9.3",stroke:"var(--accent)",strokeWidth:"1.4",strokeLinecap:"round",strokeLinejoin:"round"})]})}),"ClickWise"]}),(0,b.jsx)("div",{className:"pg-header-meta mono",children:e==="start"?"Spot the threat":`Difficulty: ${a}`})]}),e==="start"&&(0,b.jsx)(kh,{onStart:r}),e==="game"&&(0,b.jsx)(Qh,{session:i,onFinish:g},o.current),e==="results"&&u&&(0,b.jsx)(Gh,{results:u,onPlayAgain:p,onChangeDifficulty:m})]})]})}var jm=Sa(gi()),Lh=(0,Cm.createRoot)(document.getElementById("root"));Lh.render((0,jm.jsx)(qo,{}));})();
 /*! Bundled license information:
 
 scheduler/cjs/scheduler.production.js:
